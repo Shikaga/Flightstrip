@@ -1,0 +1,31 @@
+<html>
+  <head>
+  </head>
+  <body>
+    <div id="app">
+      <div id="header">
+      Header
+      <button onclick="new_task();">Add Task</button>
+      </div>
+      <div id="strips">
+      Strips
+      </div>
+    </div>
+  </body>
+  <script>
+    console.log("Hello!");
+    var strips = document.getElementById("strips");
+    function new_task() {
+    strips.innerHTML += "<div class='strip'>Lol<\div>";
+    }
+  </script>
+  <style>
+  .strip {
+  background-color:black;
+  color: white;
+  height: 100px;
+  margin:10px;
+  padding:10px;
+  }
+  </style>
+</html>
