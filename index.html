@@ -10,19 +10,58 @@
       <button onclick="new_task();">Add Task</button>
       </div>
       <div id="strips">
-      Strips
+
       </div>
     </div>
   </body>
   <script>
+
+    var Strip = function(element) {
+    this.element = element;
+    };
+
+    Strip.prototype.toString = function() {
+    console.log(this.element);
+    };
+
+    var StripHandler = function(stripsElement) {
+    this.stripsElement = stripsElement;
+    this.strips = [];
+    };
+
+    StripHandler.prototype.addStrip = function() {
+      var element = document.createElement("div");
+      element.className = "strip ui-widget-content";
+      element.innerHTML = "Kek";
+      var strip = new Strip(element);
+      this.strips.push(strip);
+      console.log(this.strips);
+      this.stripsElement.appendChild(element);
+      $( ".strip" ).draggable({
+        axis: "y",
+        containment: "parent",
+        start: function() {console.log("start")},
+        drag: function(e) {console.log("drag",e, e.clientX, e.clientY)},
+        stop: function() {console.log("stop")}
+    });
+    };
+
+    var stripHandler = new StripHandler(document.getElementById("strips"));
+    
     console.log("Hello!");
-    var strips = document.getElementById("strips");
     function new_task() {
-    strips.innerHTML += "<div id='temp' class='strip ui-widget-content'>Lol<\div>";
-	$( ".strip" ).draggable({axis: "y"});
+      stripHandler.addStrip();
     }
-  </script>
+    
+    new_task();
+    </script>
+    
+
   <style>
+    #strips {
+    height: 400px;
+    margin: auto;
+    }
   .strip {
   background-color:black;
   color: white;
